@@ -22,7 +22,11 @@ export default function Hero() {
         <div className="col-span-12 md:col-span-7 relative">
           <div className="aspect-[3/4] md:aspect-[16/10] w-full overflow-hidden rounded-[2rem]">
              <img 
-               src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2832&auto=format&fit=crop" 
+               src="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1600&auto=format&fit=crop"
+               srcSet="https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=800&auto=format&fit=crop 800w,
+                       https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=1600&auto=format&fit=crop 1600w,
+                       https://images.unsplash.com/photo-1509631179647-0177331693ae?q=80&w=2400&auto=format&fit=crop 2400w"
+               sizes="(max-width: 768px) 100vw, 60vw"
                alt="Editorial Fashion" 
                className="w-full h-full object-cover hover:scale-105 transition-transform duration-1000 ease-out"
              />
@@ -42,4 +46,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>\n  );\n}\n
+    </section>
+  );
+}
