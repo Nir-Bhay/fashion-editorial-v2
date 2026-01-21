@@ -16,4 +16,17 @@ export default function BrandStatement() {
           <h2 className="text-section mb-8 leading-tight">
             Fashion is not just about clothes. <br/>
             It's about the <span className="text-muted-taupe italic font-serif">stories</span> we tell.
-          </h2>\n          <div className=\"space-y-6 text-lg text-warm-white/80 font-light leading-relaxed max-w-xl\">\n            <p>\n              We believe in the power of \"moments.\" The quiet confidence of a perfect silhouette, the texture that speaks without words, the color that captures a mood.\n            </p>\n            <p>\n              Our design philosophy is rooted in minimalist luxury—stripping away the excess to reveal the essential. Every piece is curated to be a canvas for your personal expression, designed to last beyond the season.\n            </p>\n          </div>\n        </div>\n      </div>\n    </section>\n  )\n}\n
+          </h2>
+          <div className="space-y-6 text-lg text-warm-white/80 font-light leading-relaxed max-w-xl">
+            <p>
+              We believe in the power of "moments." The quiet confidence of a perfect silhouette, the texture that speaks without words, the color that captures a mood.
+            </p>
+            <p>
+              Our design philosophy is rooted in minimalist luxury—stripping away the excess to reveal the essential. Every piece is curated to be a canvas for your personal expression, designed to last beyond the season.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
