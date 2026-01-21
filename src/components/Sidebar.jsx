@@ -27,4 +27,26 @@ export default function Sidebar() {
         <h3 className="text-lg font-semibold mb-6">Filter</h3>
          <div className="space-y-4">
             <div>
-               <p className="text-sm font-medium mb-3">Color</p>\n               <div className=\"flex flex-wrap gap-2\">\n                  {[\'bg-black\', \'bg-white border border-gray-200\', \'bg-neutral-400\', \'bg-amber-700\', \'bg-blue-900\'].map((color, i) => (\n                    <button key={i} className={`w-6 h-6 rounded-full ${color} hover:scale-110 transition-transform`}></button>\n                  ))}\n               </div>\n            </div>\n            \n            <div className=\"pt-4\">\n               <p className=\"text-sm font-medium mb-3\">Size</p>\n               <div className=\"grid grid-cols-3 gap-2\">\n                  {[\'XS\', \'S\', \'M\', \'L\', \'XL\'].map((size) => (\n                    <button key={size} className=\"text-xs py-1 border border-muted-taupe/30 rounded hover:border-charcoal hover:bg-charcoal hover:text-white transition-colors\">\n                      {size}\n                    </button>\n                  ))}\n               </div>\n            </div>\n         </div>\n      </div>\n    </aside>\n  )\n}\n
+               <p className="text-sm font-medium mb-3">Color</p>
+               <div className="flex flex-wrap gap-2">
+                  {['bg-black', 'bg-white border border-gray-200', 'bg-neutral-400', 'bg-amber-700', 'bg-blue-900'].map((color, i) => (
+                    <button key={i} className={`w-6 h-6 rounded-full ${color} hover:scale-110 transition-transform`}></button>
+                  ))}
+               </div>
+            </div>
+
+            <div className="pt-4">
+               <p className="text-sm font-medium mb-3">Size</p>
+               <div className="grid grid-cols-3 gap-2">
+                  {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
+                    <button key={size} className="text-xs py-1 border border-muted-taupe/30 rounded hover:border-charcoal hover:bg-charcoal hover:text-white transition-colors">
+                      {size}
+                    </button>
+                  ))}
+               </div>
+            </div>
+         </div>
+      </div>
+    </aside>
+  )
+}
