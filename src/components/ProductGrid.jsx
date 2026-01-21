@@ -66,4 +66,10 @@ const MOCK_PRODUCTS = [
   }
 ];
 
-export default function ProductGrid() {\n  return (\n    <div className=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16\">\n      {MOCK_PRODUCTS.map(p => <ProductCard key={p.id} product={p} />)}\n    </div>\n  )\n}\n
+export default function ProductGrid() {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
+      {MOCK_PRODUCTS.map(p => <ProductCard key={p.id} product={p} />)}
+    </div>
+  )
+}
