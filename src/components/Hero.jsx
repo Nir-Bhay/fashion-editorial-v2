@@ -42,4 +42,6 @@ export default function Hero() {
           </div>
         </div>
       </div>
-    </section>\n  );\n}\n
+    </section>
+  );
+}
