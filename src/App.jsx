@@ -49,4 +49,42 @@ function App() {
                     <span className="text-3xl font-bold tracking-tight uppercase mb-6 block">Moment</span>
                     <p className="text-warm-white/60 max-w-sm">
                       Elevating the everyday through minimalist design and sustainable practices. Join our journey.
-                    </p>\n                 </div>\n                 <div>\n                    <h4 className=\"text-sm uppercase tracking-widest mb-6\">Shop</h4>\n                    <ul className=\"space-y-4 text-warm-white/60\">\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">New Arrivals</a></li>\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">Dresses</a></li>\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">Tops</a></li>\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">Accessories</a></li>\n                    </ul>\n                 </div>\n                 <div>\n                    <h4 className=\"text-sm uppercase tracking-widest mb-6\">Support</h4>\n                    <ul className=\"space-y-4 text-warm-white/60\">\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">Contact Us</a></li>\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">Shipping & Returns</a></li>\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">Size Guide</a></li>\n                       <li><a href=\"#\" className=\"hover:text-white transition-colors\">FAQ</a></li>\n                    </ul>\n                 </div>\n             </div>\n             \n             <div className=\"pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center\">\n                 <div className=\"text-xs text-warm-white/40 mb-4 md:mb-0\">\n                    © 2024 Moment Fashion. All rights reserved.\n                 </div>\n                 <div className=\"flex space-x-8 text-sm text-warm-white/60\">\n                    <a href=\"#\" className=\"hover:text-white transition-colors\">Instagram</a>\n                    <a href=\"#\" className=\"hover:text-white transition-colors\">Pinterest</a>\n                    <a href=\"#\" className=\"hover:text-white transition-colors\">Twitter</a>\n                 </div>\n             </div>\n         </div>\n      </footer>\n    </div>\n  )\n}\n\nexport default App\n
+                    </p>
+                 </div>
+                 <div>
+                    <h4 className="text-sm uppercase tracking-widest mb-6">Shop</h4>
+                    <ul className="space-y-4 text-warm-white/60">
+                       <li><a href="#" className="hover:text-white transition-colors">New Arrivals</a></li>
+                       <li><a href="#" className="hover:text-white transition-colors">Dresses</a></li>
+                       <li><a href="#" className="hover:text-white transition-colors">Tops</a></li>
+                       <li><a href="#" className="hover:text-white transition-colors">Accessories</a></li>
+                    </ul>
+                 </div>
+                 <div>
+                    <h4 className="text-sm uppercase tracking-widest mb-6">Support</h4>
+                    <ul className="space-y-4 text-warm-white/60">
+                       <li><a href="#" className="hover:text-white transition-colors">Contact Us</a></li>
+                       <li><a href="#" className="hover:text-white transition-colors">Shipping & Returns</a></li>
+                       <li><a href="#" className="hover:text-white transition-colors">Size Guide</a></li>
+                       <li><a href="#" className="hover:text-white transition-colors">FAQ</a></li>
+                    </ul>
+                 </div>
+             </div>
+
+             <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center">
+                 <div className="text-xs text-warm-white/40 mb-4 md:mb-0">
+                    © 2024 Moment Fashion. All rights reserved.
+                 </div>
+                 <div className="flex space-x-8 text-sm text-warm-white/60">
+                    <a href="#" className="hover:text-white transition-colors">Instagram</a>
+                    <a href="#" className="hover:text-white transition-colors">Pinterest</a>
+                    <a href="#" className="hover:text-white transition-colors">Twitter</a>
+                 </div>
+             </div>
+         </div>
+      </footer>
+    </div>
+  )
+}
+
+export default App
