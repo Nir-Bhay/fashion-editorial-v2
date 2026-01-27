@@ -29,8 +29,19 @@ export default function Sidebar() {
             <div>
                <p className="text-sm font-medium mb-3">Color</p>
                <div className="flex flex-wrap gap-2">
-                  {['bg-black', 'bg-white border border-gray-200', 'bg-neutral-400', 'bg-amber-700', 'bg-blue-900'].map((color, i) => (
-                    <button key={i} className={`w-6 h-6 rounded-full ${color} hover:scale-110 transition-transform`}></button>
+                  {[
+                    { name: 'Black', className: 'bg-black' },
+                    { name: 'White', className: 'bg-white border border-gray-200' },
+                    { name: 'Grey', className: 'bg-neutral-400' },
+                    { name: 'Brown', className: 'bg-amber-700' },
+                    { name: 'Navy', className: 'bg-blue-900' }
+                  ].map((color) => (
+                    <button
+                      key={color.name}
+                      className={`w-6 h-6 rounded-full ${color.className} hover:scale-110 transition-transform focus:outline-none focus:ring-2 focus:ring-charcoal focus:ring-offset-2`}
+                      aria-label={`Select ${color.name}`}
+                      title={color.name}
+                    />
                   ))}
                </div>
             </div>
@@ -39,7 +50,10 @@ export default function Sidebar() {
                <p className="text-sm font-medium mb-3">Size</p>
                <div className="grid grid-cols-3 gap-2">
                   {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
-                    <button key={size} className="text-xs py-1 border border-muted-taupe/30 rounded hover:border-charcoal hover:bg-charcoal hover:text-white transition-colors">
+                    <button
+                      key={size}
+                      className="text-xs py-1 border border-muted-taupe/30 rounded hover:border-charcoal hover:bg-charcoal hover:text-white transition-colors focus:outline-none focus:ring-2 focus:ring-charcoal focus:ring-offset-1"
+                    >
                       {size}
                     </button>
                   ))}
