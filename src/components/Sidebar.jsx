@@ -29,8 +29,19 @@ export default function Sidebar() {
             <div>
                <p className="text-sm font-medium mb-3">Color</p>
                <div className="flex flex-wrap gap-2">
-                  {['bg-black', 'bg-white border border-gray-200', 'bg-neutral-400', 'bg-amber-700', 'bg-blue-900'].map((color, i) => (
-                    <button key={i} className={`w-6 h-6 rounded-full ${color} hover:scale-110 transition-transform`}></button>
+                  {[
+                    { name: 'Black', className: 'bg-black' },
+                    { name: 'White', className: 'bg-white border border-gray-200' },
+                    { name: 'Grey', className: 'bg-neutral-400' },
+                    { name: 'Brown', className: 'bg-amber-700' },
+                    { name: 'Navy', className: 'bg-blue-900' },
+                  ].map((color) => (
+                    <button
+                      key={color.name}
+                      aria-label={`Select color: ${color.name}`}
+                      title={color.name}
+                      className={`w-6 h-6 rounded-full ${color.className} hover:scale-110 transition-transform`}
+                    ></button>
                   ))}
                </div>
             </div>
