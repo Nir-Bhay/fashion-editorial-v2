@@ -9,15 +9,25 @@ export default function Sidebar() {
     { name: 'Accessories', count: 14 },
   ];
 
+  const colors = [
+    { name: 'Black', className: 'bg-black' },
+    { name: 'White', className: 'bg-white border border-gray-200' },
+    { name: 'Grey', className: 'bg-neutral-400' },
+    { name: 'Brown', className: 'bg-amber-700' },
+    { name: 'Navy', className: 'bg-blue-900' },
+  ];
+
   return (
     <aside className="sticky top-28 w-full pr-8 hidden lg:block">
       <div className="mb-10">
         <h3 className="text-lg font-semibold mb-6">Category</h3>
         <ul className="space-y-3">
           {categories.map((cat, idx) => (
-            <li key={cat.name} className={`flex justify-between items-center group cursor-pointer py-1 ${idx === 0 ? 'text-charcoal font-medium' : 'text-charcoal/60'}`}>
-              <span className="group-hover:text-charcoal group-hover:translate-x-1 transition-all duration-300">{cat.name}</span>
-              <span className="text-xs text-charcoal/40 font-mono">{cat.count}</span>
+            <li key={cat.name}>
+              <button className={`w-full flex justify-between items-center group py-1 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal/20 rounded ${idx === 0 ? 'text-charcoal font-medium' : 'text-charcoal/60'}`}>
+                <span className="group-hover:text-charcoal group-hover:translate-x-1 group-focus-visible:text-charcoal group-focus-visible:translate-x-1 transition-all duration-300">{cat.name}</span>
+                <span className="text-xs text-charcoal/40 font-mono">{cat.count}</span>
+              </button>
             </li>
           ))}
         </ul>
@@ -29,8 +39,13 @@ export default function Sidebar() {
             <div>
                <p className="text-sm font-medium mb-3">Color</p>
                <div className="flex flex-wrap gap-2">
-                  {['bg-black', 'bg-white border border-gray-200', 'bg-neutral-400', 'bg-amber-700', 'bg-blue-900'].map((color, i) => (
-                    <button key={i} className={`w-6 h-6 rounded-full ${color} hover:scale-110 transition-transform`}></button>
+                  {colors.map((color) => (
+                    <button
+                      key={color.name}
+                      className={`w-6 h-6 rounded-full ${color.className} hover:scale-110 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-charcoal`}
+                      aria-label={`Select ${color.name} color`}
+                      title={color.name}
+                    />
                   ))}
                </div>
             </div>
