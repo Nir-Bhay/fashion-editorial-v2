@@ -27,13 +27,13 @@ function App() {
                 <h2 className="text-section">Latest Arrivals</h2>
                 <div className="flex items-center space-x-4">
                   <span className="text-sm text-charcoal/60">Showing 9 of 124 items</span>
-                  <button className="lg:hidden text-sm underline">Filter</button>
+                  <button className="lg:hidden text-sm underline focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">Filter</button>
                 </div>
               </div>
               <ProductGrid />
               
               <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300">
+                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2">
                     Load More
                  </button>
               </div>

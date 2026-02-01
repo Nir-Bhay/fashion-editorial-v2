@@ -54,7 +54,11 @@ export default function Sidebar() {
                <p className="text-sm font-medium mb-3">Size</p>
                <div className="grid grid-cols-3 gap-2">
                   {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
-                    <button key={size} className="text-xs py-1 border border-muted-taupe/30 rounded hover:border-charcoal hover:bg-charcoal hover:text-white transition-colors">
+                    <button
+                      key={size}
+                      className="text-xs py-1 border border-muted-taupe/30 rounded hover:border-charcoal hover:bg-charcoal hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"
+                      aria-label={`Select size ${size}`}
+                    >
                       {size}
                     </button>
                   ))}
