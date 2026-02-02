@@ -17,6 +17,14 @@ export default function Sidebar() {
     { name: 'Navy', className: 'bg-blue-900' },
   ];
 
+  const sizes = [
+    { label: 'XS', title: 'Extra Small' },
+    { label: 'S', title: 'Small' },
+    { label: 'M', title: 'Medium' },
+    { label: 'L', title: 'Large' },
+    { label: 'XL', title: 'Extra Large' },
+  ];
+
   return (
     <aside className="sticky top-28 w-full pr-8 hidden lg:block">
       <div className="mb-10">
@@ -53,14 +61,7 @@ export default function Sidebar() {
             <div className="pt-4">
                <p className="text-sm font-medium mb-3">Size</p>
                <div className="grid grid-cols-3 gap-2">
-                  {['XS', 'S', 'M', 'L', 'XL'].map((size) => (
-                    <button
-                      key={size}
-                      className="text-xs py-1 border border-muted-taupe/30 rounded hover:border-charcoal hover:bg-charcoal hover:text-white transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2"
-                      aria-label={`Select size ${size}`}
-                      title={`Select size ${size}`}
-                    >
-                      {size}
+
                     </button>
                   ))}
                </div>

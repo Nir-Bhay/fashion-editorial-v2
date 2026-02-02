@@ -12,7 +12,7 @@ export default function Hero() {
           <p className="text-body max-w-md mb-10 text-charcoal/70">
             Curated collections for the modern minimalist. Discover the art of dressing with intention and confidence.
           </p>
-          <button className="group flex items-center space-x-2 text-sm font-bold tracking-widest uppercase border-b-2 border-charcoal pb-2 hover:text-sunset-orange hover:border-sunset-orange transition-all">
+          <button className="group flex items-center space-x-2 text-sm font-bold tracking-widest uppercase border-b-2 border-charcoal pb-2 hover:text-sunset-orange hover:border-sunset-orange transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-4 rounded-sm">
             <span>Explore Collection</span>
             <span className="group-hover:translate-x-1 transition-transform">→</span>
           </button>
