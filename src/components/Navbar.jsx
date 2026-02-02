@@ -20,13 +20,7 @@ export default function Navbar() {
 
         {/* Icons */}
         <div className="flex-1 flex justify-end items-center space-x-6">
-          <button className="hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-md" aria-label="Search">
-            <Search size={20} strokeWidth={1.5} />
-          </button>
-          <button className="hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-md" aria-label="Wishlist">
-            <Heart size={20} strokeWidth={1.5} />
-          </button>
-          <button className="hover:text-sunset-orange transition-colors relative focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-md" aria-label="Cart">
+
             <ShoppingBag size={20} strokeWidth={1.5} />
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-sunset-orange rounded-full"></span>
           </button>
