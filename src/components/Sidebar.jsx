@@ -61,7 +61,14 @@ export default function Sidebar() {
             <div className="pt-4">
                <p className="text-sm font-medium mb-3">Size</p>
                <div className="grid grid-cols-3 gap-2">
-
+                  {sizes.map((size) => (
+                    <button
+                      key={size.label}
+                      className="py-2 border border-charcoal/20 text-sm hover:border-charcoal hover:bg-charcoal/5 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal"
+                      aria-label={`Select size ${size.title}`}
+                      title={size.title}
+                    >
+                      {size.label}
                     </button>
                   ))}
                </div>
