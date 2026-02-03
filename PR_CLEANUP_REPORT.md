@@ -64,10 +64,22 @@ These PRs are still open and need review/decision.
 
 ---
 
-## 🔧 Manual Cleanup Steps
+## ⚡ Automated Cleanup Solution (Recommended)
+I have created a master cleanup script that implements all the recommendations below automatically.
 
-### Step 1: Delete Merged PR Branches
-Use GitHub UI or CLI to delete branches for merged PRs:
+**Run this command in your terminal:**
+```bash
+bash REPO_MASTER_CLEANUP.sh
+```
+
+**This script will:**
+1. ✅ **Merge** high-priority PRs (Performance, Accessibility, Build Fixes)
+2. ❌ **Close** duplicate and redundant PRs
+3. 🧹 **Delete** all stale branches (remote and local)
+
+---
+
+## 🔧 Manual Cleanup Steps (Alternative)
 
 ```bash
 # Using GitHub CLI (gh)
