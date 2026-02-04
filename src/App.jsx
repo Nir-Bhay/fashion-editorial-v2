@@ -7,9 +7,15 @@ import ProductGrid from './components/ProductGrid';
 function App() {
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-4 focus:left-4 focus:bg-charcoal focus:text-white focus:px-6 focus:py-3 focus:font-medium focus:rounded-sm focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-sunset-orange"
+      >
+        Skip to content
+      </a>
       <Navbar />
       
-      <main>
+      <main id="main-content" tabIndex="-1">
         <Hero />
         
         <BrandStatement />
