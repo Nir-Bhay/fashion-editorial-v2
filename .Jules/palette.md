@@ -13,3 +13,7 @@
 ## 2026-01-26 - Clickable Card Pattern
 **Learning:** When making an entire card clickable using a stretched link (`after:absolute after:inset-0`), any nested interactive elements (like buttons) must be explicitly positioned (e.g., `relative`) and z-indexed higher than the link overlay to remain clickable.
 **Action:** Use `z-10` for the card link overlay and `z-20` for nested actions. Ensure the card container is `relative` or `article`.
+
+## 2026-01-26 - Transient Interaction Feedback
+**Learning:** When adding transient visual feedback (like an "Added to cart" success state) that automatically resets after a delay, it is crucial to complement the visual change with an `aria-live` region so screen reader users are notified of the success. Also, component unmounting can cause memory leaks if `setTimeout` isn't cleaned up in `useEffect`.
+**Action:** Always include an `aria-live="polite"` region (often visibly hidden with `sr-only`) when implementing temporary success states, and ensure `useEffect` returns a cleanup function to clear timeouts.
