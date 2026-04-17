@@ -13,3 +13,9 @@
 ## 2026-01-26 - Clickable Card Pattern
 **Learning:** When making an entire card clickable using a stretched link (`after:absolute after:inset-0`), any nested interactive elements (like buttons) must be explicitly positioned (e.g., `relative`) and z-indexed higher than the link overlay to remain clickable.
 **Action:** Use `z-10` for the card link overlay and `z-20` for nested actions. Ensure the card container is `relative` or `article`.
+## 2026-04-17 - Transient UX Feedback with Screen Readers
+**Learning:** When adding transient visual feedback (like an 'Added' checkmark that reverts after 2 seconds), pairing the visual change with an `aria-live="polite"` region is the most robust way to ensure screen reader users receive the feedback without focus being forcibly moved or the context completely wiped out. Simply swapping icons isn't enough.
+**Action:** Next time I add temporary success states to buttons, always wrap the feedback text in an `aria-live` region and ensure a  properly clears the timeout to avoid memory leaks.
+## 2025-01-20 - Transient UX Feedback with Screen Readers
+**Learning:** When adding transient visual feedback (like an 'Added' checkmark that reverts after 2 seconds), pairing the visual change with an `aria-live="polite"` region ensures screen reader users receive the feedback without focus forcibly moving.
+**Action:** Next time I add temporary success states to buttons, always wrap the feedback text in an `aria-live` region and ensure a `useEffect` properly clears the timeout to avoid memory leaks.
