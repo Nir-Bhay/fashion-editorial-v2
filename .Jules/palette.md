@@ -13,3 +13,7 @@
 ## 2026-01-26 - Clickable Card Pattern
 **Learning:** When making an entire card clickable using a stretched link (`after:absolute after:inset-0`), any nested interactive elements (like buttons) must be explicitly positioned (e.g., `relative`) and z-indexed higher than the link overlay to remain clickable.
 **Action:** Use `z-10` for the card link overlay and `z-20` for nested actions. Ensure the card container is `relative` or `article`.
+
+## 2026-01-26 - Transient State Accessibility & Click Handlers
+**Learning:** Transient visual feedback (like "Added to Cart" success states) often requires stopping event propagation when nested within clickable cards (like the ProductCard's `after:inset-0` link). Furthermore, visual-only feedback is inaccessible; dynamic feedback needs an `aria-live="polite"` region.
+**Action:** Always use `e.preventDefault()` and `e.stopPropagation()` for interactive buttons nested in cards. For transient accessibility feedback, use `useEffect` to manage a visual timeout and pair it with a hidden `aria-live="polite"` element for screen readers.
