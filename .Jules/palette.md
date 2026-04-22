@@ -13,3 +13,7 @@
 ## 2026-01-26 - Clickable Card Pattern
 **Learning:** When making an entire card clickable using a stretched link (`after:absolute after:inset-0`), any nested interactive elements (like buttons) must be explicitly positioned (e.g., `relative`) and z-indexed higher than the link overlay to remain clickable.
 **Action:** Use `z-10` for the card link overlay and `z-20` for nested actions. Ensure the card container is `relative` or `article`.
+
+## 2026-01-26 - Accessible Transient Feedback
+**Learning:** For transient feedback (like "Added to cart" states), simply changing visual styles or `aria-label` is not enough for screen readers. Failing to clear state updates on unmount causes React memory leaks.
+**Action:** When adding temporary visual feedback, complement it with an `aria-live="polite"` region for screen readers, and use `useEffect` to reliably clear timeouts (avoiding unmount leaks). Interactive elements within full-card links must use `e.preventDefault()` and `e.stopPropagation()` to prevent unwanted navigation.
