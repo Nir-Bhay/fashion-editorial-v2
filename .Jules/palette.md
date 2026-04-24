@@ -13,3 +13,7 @@
 ## 2026-01-26 - Clickable Card Pattern
 **Learning:** When making an entire card clickable using a stretched link (`after:absolute after:inset-0`), any nested interactive elements (like buttons) must be explicitly positioned (e.g., `relative`) and z-indexed higher than the link overlay to remain clickable.
 **Action:** Use `z-10` for the card link overlay and `z-20` for nested actions. Ensure the card container is `relative` or `article`.
+
+## 2026-01-26 - Accessible Transient UI States
+**Learning:** Transient visual changes (like an icon swap after clicking "Add to cart") often lack equivalent screen reader feedback in this codebase. Furthermore, typical "success" colors like green conflict with the editorial, minimalist aesthetic.
+**Action:** Pair all transient visual feedback with an `aria-live="polite"` region. Additionally, use on-brand high-contrast colors (like `bg-charcoal text-white`) for success states instead of introducing new standard colors. Always wrap timeout triggers in `useEffect` and clear them on component unmount to prevent memory leaks.
