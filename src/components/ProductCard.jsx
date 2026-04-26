@@ -18,6 +18,9 @@ export default function ProductCard({ product }) {
 
   return (
     <article className="group relative">
+      <div aria-live="polite" className="sr-only">
+        {isAdded ? `${product.name} added to cart` : ''}
+      </div>
       <div className="relative aspect-[3/4] overflow-hidden rounded-xl bg-gray-100 mb-4">
         <img 
           src={product.image} 
@@ -58,7 +61,6 @@ export default function ProductCard({ product }) {
         </div>
         <span className="text-base font-medium text-charcoal">${product.price}</span>
       </div>
-      <div aria-live="polite" className="sr-only">{isAdded ? "Added to cart" : ""}</div>
     </article>
   )
 }
