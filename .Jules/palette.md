@@ -16,3 +16,7 @@
 ## 2026-04-25 - Transient Success State Accessibility
 **Learning:** Relying solely on changing the 'aria-label' on a button when its state temporarily changes (like an 'Added' success state) is unreliable for screen readers. Using an `aria-live="polite"` visually hidden region that dynamically inserts text (e.g. '${product.name} added to cart') provides a much more robust and understandable experience for screen reader users.
 **Action:** Use an `aria-live` region combined with `setTimeout` (managed carefully via `useEffect` with proper cleanup) to reliably announce transient success states to assistive technologies without interrupting the user's flow.
+
+## 2026-04-26 - Card Link Focus Indicator
+**Learning:** When using the "stretched link" pattern (`after:absolute after:inset-0`) to make an entire card clickable, applying standard focus utilities (`focus-visible:ring-2`) to the anchor tag doesn't work correctly because the pseudo-element covers the area and the focus ring isn't visible or aligned with the card's boundaries.
+**Action:** Apply focus utilities directly to the pseudo-element using `focus-visible:after:ring-2` and ensure you match the card's border radius (e.g., `after:rounded-xl`) so the focus ring correctly outlines the entire clickable area.
