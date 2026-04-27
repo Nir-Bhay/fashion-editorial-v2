@@ -16,3 +16,7 @@
 ## 2026-04-25 - Transient Success State Accessibility
 **Learning:** Relying solely on changing the 'aria-label' on a button when its state temporarily changes (like an 'Added' success state) is unreliable for screen readers. Using an `aria-live="polite"` visually hidden region that dynamically inserts text (e.g. '${product.name} added to cart') provides a much more robust and understandable experience for screen reader users.
 **Action:** Use an `aria-live` region combined with `setTimeout` (managed carefully via `useEffect` with proper cleanup) to reliably announce transient success states to assistive technologies without interrupting the user's flow.
+
+## 2024-04-27 - Icon Accessibility & Notification Indicators
+**Learning:** Icon-only buttons lack immediate context for some sighted users, and visual notification indicators (like unread dots) on icons are invisible to screen readers if not explicitly stated.
+**Action:** Always add `title` attributes to icon-only buttons to provide native tooltips, and ensure visual notification states update the button's `aria-label` (e.g., from "Cart" to "Cart with new items") to communicate state to assistive technologies.
