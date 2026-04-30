@@ -23,6 +23,7 @@ export default function Navbar() {
           <button
             className="hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-full p-1"
             aria-label="Search"
+            title="Search"
           >
             <Search size={20} strokeWidth={1.5} />
           </button>
@@ -30,13 +31,15 @@ export default function Navbar() {
           <button
             className="hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-full p-1"
             aria-label="Wishlist"
+            title="Wishlist"
           >
             <Heart size={20} strokeWidth={1.5} />
           </button>
 
           <button
             className="relative hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-full p-1"
-            aria-label="Cart"
+            aria-label="Cart with items"
+            title="Cart with items"
           >
             <ShoppingBag size={20} strokeWidth={1.5} />
             <span className="absolute -top-1 -right-1 w-2 h-2 bg-sunset-orange rounded-full"></span>
