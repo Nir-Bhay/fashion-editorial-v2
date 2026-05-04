@@ -6,13 +6,13 @@ export default function Navbar() {
       <div className="max-w-[1600px] mx-auto px-6 py-6 flex items-center justify-between">
         {/* Logo */}
         <div className="flex-1">
-          <a href="/" className="text-2xl font-bold tracking-tight uppercase">Moment</a>
+          <a href="/" className="text-2xl font-bold tracking-tight uppercase focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-4 rounded-sm" aria-label="Moment Home">Moment</a>
         </div>
 
         {/* Navigation */}
         <div className="hidden md:flex items-center space-x-12">
           {['New Arrivals', 'Editorial', 'Shop', 'Collections'].map((item) => (
-            <a key={item} href="#" className="text-sm font-medium hover:text-charcoal/60 transition-colors uppercase tracking-wide">
+            <a key={item} href="#" className="text-sm font-medium hover:text-charcoal/60 transition-colors uppercase tracking-wide focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-4 rounded-sm">
               {item}
             </a>
           ))}
@@ -23,6 +23,7 @@ export default function Navbar() {
           <button
             className="hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-full p-1"
             aria-label="Search"
+            title="Search"
           >
             <Search size={20} strokeWidth={1.5} />
           </button>
@@ -30,16 +31,18 @@ export default function Navbar() {
           <button
             className="hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-full p-1"
             aria-label="Wishlist"
+            title="Wishlist"
           >
             <Heart size={20} strokeWidth={1.5} />
           </button>
 
           <button
             className="relative hover:text-sunset-orange transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-sunset-orange rounded-full p-1"
-            aria-label="Cart"
+            aria-label="Cart, 1 item"
+            title="Cart"
           >
             <ShoppingBag size={20} strokeWidth={1.5} />
-            <span className="absolute -top-1 -right-1 w-2 h-2 bg-sunset-orange rounded-full"></span>
+            <span className="absolute -top-1 -right-1 w-2 h-2 bg-sunset-orange rounded-full" aria-hidden="true"></span>
           </button>
         </div>
       </div>
