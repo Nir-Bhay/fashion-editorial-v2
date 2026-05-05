@@ -50,7 +50,7 @@ export default function ProductCard({ product }) {
       <div className="flex justify-between items-start">
         <div>
            <h3 className="text-base font-medium text-charcoal group-hover:text-sunset-orange group-focus-within:text-sunset-orange transition-colors">
-             <a href="#" className="after:absolute after:inset-0 after:z-10 focus:outline-none">
+             <a href="#" className="after:absolute after:inset-0 after:z-10 focus:outline-none focus-visible:after:ring-2 focus-visible:after:ring-charcoal focus-visible:after:ring-offset-4 focus-visible:after:rounded-xl">
                {product.name}
              </a>
            </h3>
