@@ -37,6 +37,7 @@ export default function ProductCard({ product }) {
                 : 'bg-warm-white text-charcoal hover:bg-sunset-orange hover:text-white'
             }`}
             aria-label={isAdded ? "Added to cart" : "Add to cart"}
+            title={isAdded ? "Added to cart" : "Add to cart"}
           >
             {isAdded ? (
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
