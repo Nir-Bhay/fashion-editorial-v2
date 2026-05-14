@@ -16,3 +16,7 @@
 ## 2026-04-25 - Transient Success State Accessibility
 **Learning:** Relying solely on changing the 'aria-label' on a button when its state temporarily changes (like an 'Added' success state) is unreliable for screen readers. Using an `aria-live="polite"` visually hidden region that dynamically inserts text (e.g. '${product.name} added to cart') provides a much more robust and understandable experience for screen reader users.
 **Action:** Use an `aria-live` region combined with `setTimeout` (managed carefully via `useEffect` with proper cleanup) to reliably announce transient success states to assistive technologies without interrupting the user's flow.
+
+## 2026-10-25 - Stretched Link Focus & Icon Notification States
+**Learning:** Full-card stretched links (`after:absolute after:inset-0`) lose focus visibility because native outlines don't apply to pseudo-elements gracefully. Additionally, decorative visual notifications (like unread dots) often confuse screen readers if left visible to them.
+**Action:** Apply focus utilities directly to the pseudo-element (e.g., `focus-visible:after:ring-2 focus-visible:after:ring-offset-4`) to restore keyboard focus outlines on stretched links. Pair `aria-label` with `title` on icon buttons, apply `aria-hidden="true"` to decorative notification indicators, and update the parent's `aria-label` to explicitly communicate the state.
