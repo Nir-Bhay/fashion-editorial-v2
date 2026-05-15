@@ -16,3 +16,7 @@
 ## 2026-04-25 - Transient Success State Accessibility
 **Learning:** Relying solely on changing the 'aria-label' on a button when its state temporarily changes (like an 'Added' success state) is unreliable for screen readers. Using an `aria-live="polite"` visually hidden region that dynamically inserts text (e.g. '${product.name} added to cart') provides a much more robust and understandable experience for screen reader users.
 **Action:** Use an `aria-live` region combined with `setTimeout` (managed carefully via `useEffect` with proper cleanup) to reliably announce transient success states to assistive technologies without interrupting the user's flow.
+
+## 2026-05-15 - Icon-only Button Tooltips & Redundant SVGs
+**Learning:** Icon-only buttons often need both `aria-label` (for screen readers) and `title` (for native tooltips for sighted users). Furthermore, `svg` elements or notification dot `span`s inside these buttons should have `aria-hidden="true"` to prevent screen readers from reading them out redundantly, since the button's `aria-label` already provides the necessary context.
+**Action:** When creating or modifying icon-only buttons, always ensure they have both `aria-label` and `title`. Always add `aria-hidden="true"` to decorative elements (like SVGs or status dots) inside buttons that already have accessible names.
