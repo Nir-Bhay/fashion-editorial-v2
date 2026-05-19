@@ -16,3 +16,7 @@
 ## 2026-04-25 - Transient Success State Accessibility
 **Learning:** Relying solely on changing the 'aria-label' on a button when its state temporarily changes (like an 'Added' success state) is unreliable for screen readers. Using an `aria-live="polite"` visually hidden region that dynamically inserts text (e.g. '${product.name} added to cart') provides a much more robust and understandable experience for screen reader users.
 **Action:** Use an `aria-live` region combined with `setTimeout` (managed carefully via `useEffect` with proper cleanup) to reliably announce transient success states to assistive technologies without interrupting the user's flow.
+
+## 2026-05-19 - Navbar Interactive Icons
+**Learning:** Icon-only interactive elements in navigational structures (like Navbar) need robust accessibility labeling beyond just `aria-label`. Decorative elements and SVGs without specific text content need explicitly hiding from screen readers to reduce noise, and elements visually representing state (like notification dots) need their state reflected in the component's parent `aria-label`.
+**Action:** When adding or updating icon-only buttons, always pair `aria-label` with `title` for visual tooltips, apply `aria-hidden="true"` to nested SVGs and visual state indicators, and ensure the parent's `aria-label` dynamically reflects the visual state (e.g., "Cart with items" instead of just "Cart").
