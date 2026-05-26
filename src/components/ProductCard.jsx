@@ -37,11 +37,12 @@ export default function ProductCard({ product }) {
                 : 'bg-warm-white text-charcoal hover:bg-sunset-orange hover:text-white'
             }`}
             aria-label={isAdded ? "Added to cart" : "Add to cart"}
+            title={isAdded ? "Added to cart" : "Add to cart"}
           >
             {isAdded ? (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
             ) : (
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             )}
           </button>
         </div>
@@ -50,7 +51,7 @@ export default function ProductCard({ product }) {
       <div className="flex justify-between items-start">
         <div>
            <h3 className="text-base font-medium text-charcoal group-hover:text-sunset-orange group-focus-within:text-sunset-orange transition-colors">
-             <a href="#" className="after:absolute after:inset-0 after:z-10 focus:outline-none">
+             <a href="#" className="after:absolute after:inset-0 after:z-10 focus:outline-none focus-visible:after:ring-2 focus-visible:after:ring-charcoal focus-visible:after:ring-offset-4 focus-visible:after:rounded-xl">
                {product.name}
              </a>
            </h3>
