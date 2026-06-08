@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
@@ -5,6 +7,33 @@ import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
 
 function App() {
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [liveMessage, setLiveMessage] = useState('');
+
+  const handleLoadMore = () => {
+    setIsLoadingMore(true);
+    setLiveMessage('Loading more products...');
+  };
+
+  useEffect(() => {
+    if (isLoadingMore) {
+      const timer = setTimeout(() => {
+        setIsLoadingMore(false);
+        setLiveMessage('Successfully loaded more products');
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoadingMore]);
+
+  useEffect(() => {
+    if (liveMessage && !isLoadingMore) {
+      const clearLiveMessageTimer = setTimeout(() => {
+        setLiveMessage('');
+      }, 3000);
+      return () => clearTimeout(clearLiveMessageTimer);
+    }
+  }, [liveMessage, isLoadingMore]);
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
       <a
@@ -38,9 +67,18 @@ function App() {
               </div>
               <ProductGrid />
               
-              <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+              <div className="mt-24 flex justify-center flex-col items-center">
+                 <div aria-live="polite" className="sr-only">
+                    {liveMessage}
+                 </div>
+                 <button
+                    onClick={handleLoadMore}
+                    disabled={isLoadingMore}
+                    aria-label={isLoadingMore ? "Loading more products" : "Load more products"}
+                    className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                 >
+                    {isLoadingMore && <Loader2 className="animate-spin" size={16} />}
+                    {isLoadingMore ? "Loading..." : "Load More"}
                  </button>
               </div>
             </div>
