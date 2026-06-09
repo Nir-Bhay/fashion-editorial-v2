@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
@@ -5,6 +7,32 @@ import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
 
 function App() {
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [loadSuccess, setLoadSuccess] = useState(false);
+
+  useEffect(() => {
+    if (isLoadingMore) {
+      const timer = setTimeout(() => {
+        setIsLoadingMore(false);
+        setLoadSuccess(true);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoadingMore]);
+
+  useEffect(() => {
+    if (loadSuccess) {
+      const timer = setTimeout(() => setLoadSuccess(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [loadSuccess]);
+
+  const handleLoadMore = () => {
+    if (!isLoadingMore) {
+      setIsLoadingMore(true);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
       <a
@@ -38,9 +66,17 @@ function App() {
               </div>
               <ProductGrid />
               
-              <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+              <div className="mt-24 flex flex-col items-center justify-center">
+                 <div aria-live="polite" className="sr-only">
+                   {isLoadingMore ? "Loading more products..." : loadSuccess ? "Successfully loaded more products." : ""}
+                 </div>
+                 <button
+                   onClick={handleLoadMore}
+                   disabled={isLoadingMore}
+                   className="flex items-center space-x-2 px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-transparent disabled:hover:text-charcoal transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm"
+                 >
+                    {isLoadingMore && <Loader2 className="w-4 h-4 animate-spin" />}
+                    <span>{isLoadingMore ? 'Loading' : loadSuccess ? 'Loaded' : 'Load More'}</span>
                  </button>
               </div>
             </div>
