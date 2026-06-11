@@ -20,3 +20,7 @@
 ## 2026-02-02 - Visual Notification Accessibility on Icons
 **Learning:** Icon-only interactive elements like a cart button often use visual notification dots. These dots need `aria-hidden="true"` to prevent redundant reading, while the element's `aria-label` needs to explicitly convey the state (e.g. "Cart with items" vs "Cart"). Furthermore, all icon-only buttons need `title` attributes matching the `aria-label` for native hover tooltips.
 **Action:** Pair `aria-label` with `title` on icon-only interactive elements, and ensure visual notification states hide decorative elements from screen readers while updating the explicit label.
+
+## 2025-02-20 - Adding async state and accessibility to actions
+**Learning:** For transient accessibility feedback (like loading spinners), using an `aria-live="polite"` region explicitly announcing start and completion is essential and highly effective for screen readers, compared to just changing visual or button states.
+**Action:** When adding async UI interactions in the future (like loading indicators), pair them with explicit visually-hidden `aria-live` announcements to ensure a seamless experience for all users.
