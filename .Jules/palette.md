@@ -20,3 +20,7 @@
 ## 2026-02-02 - Visual Notification Accessibility on Icons
 **Learning:** Icon-only interactive elements like a cart button often use visual notification dots. These dots need `aria-hidden="true"` to prevent redundant reading, while the element's `aria-label` needs to explicitly convey the state (e.g. "Cart with items" vs "Cart"). Furthermore, all icon-only buttons need `title` attributes matching the `aria-label` for native hover tooltips.
 **Action:** Pair `aria-label` with `title` on icon-only interactive elements, and ensure visual notification states hide decorative elements from screen readers while updating the explicit label.
+
+## 2026-06-12 - Async Action Feedback & Live Regions
+**Learning:** For transient async operations (like simulated data fetching or "Load More" actions), relying purely on visual cues (spinners, changing button text) leaves screen reader users uninformed about the operation's start and end. Additionally, combining sequential async timeouts in a single `useEffect` can cause premature cleanup if the first timeout updates a state variable in the dependency array.
+**Action:** Pair visual loading indicators with a visually hidden `aria-live="polite"` region that explicitly announces state changes (e.g., "Loading more items...", "Successfully loaded more items."). Always use separate `useEffect` hooks for each step in a sequence of timed state changes to prevent unmounting/cleanup bugs.
