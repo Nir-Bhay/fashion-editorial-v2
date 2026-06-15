@@ -1,10 +1,32 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
 import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
+import { Loader2 } from 'lucide-react';
 
 function App() {
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+
+  useEffect(() => {
+    if (isLoadingMore) {
+      const timer = setTimeout(() => {
+        setIsLoadingMore(false);
+        setShowSuccess(true);
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoadingMore]);
+
+  useEffect(() => {
+    if (showSuccess) {
+      const timer = setTimeout(() => setShowSuccess(false), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showSuccess]);
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
       <a
@@ -38,9 +60,17 @@ function App() {
               </div>
               <ProductGrid />
               
-              <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+              <div className="mt-24 flex justify-center flex-col items-center gap-4">
+                 <div aria-live="polite" className="sr-only">
+                   {isLoadingMore ? 'Loading more items...' : showSuccess ? 'Successfully loaded more items.' : ''}
+                 </div>
+                 <button
+                   onClick={() => !isLoadingMore && setIsLoadingMore(true)}
+                   disabled={isLoadingMore}
+                   aria-label={isLoadingMore ? "Loading more items" : "Load more items"}
+                   className="min-w-[200px] flex justify-center items-center gap-2 px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                 >
+                    {isLoadingMore ? <Loader2 className="animate-spin w-4 h-4" /> : 'Load More'}
                  </button>
               </div>
             </div>
