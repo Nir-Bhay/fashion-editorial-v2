@@ -1,12 +1,49 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
 import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
+import { Loader2 } from 'lucide-react';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [announcement, setAnnouncement] = useState('');
+  const [hasLoaded, setHasLoaded] = useState(false);
+
+  useEffect(() => {
+    if (isLoading) {
+      const initTimer = setTimeout(() => setAnnouncement('Loading more items...'), 0);
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+        setHasLoaded(true);
+      }, 1500);
+      return () => {
+        clearTimeout(initTimer);
+        clearTimeout(timer);
+      };
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (hasLoaded) {
+      const initTimer = setTimeout(() => setAnnouncement('Successfully loaded more items.'), 0);
+      const timer = setTimeout(() => {
+        setHasLoaded(false);
+        setAnnouncement('');
+      }, 3000);
+      return () => {
+        clearTimeout(initTimer);
+        clearTimeout(timer);
+      };
+    }
+  }, [hasLoaded]);
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
+      <div className="sr-only" aria-live="polite">
+        {announcement}
+      </div>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-4 focus:left-4 focus:bg-charcoal focus:text-white focus:px-6 focus:py-3 focus:font-medium focus:rounded-sm focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-sunset-orange"
@@ -39,8 +76,19 @@ function App() {
               <ProductGrid />
               
               <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+                 <button
+                   onClick={() => setIsLoading(true)}
+                   disabled={isLoading}
+                   className="flex items-center space-x-2 px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm disabled:opacity-50 disabled:pointer-events-none"
+                 >
+                    {isLoading ? (
+                      <>
+                        <Loader2 size={16} className="animate-spin" />
+                        <span>Loading...</span>
+                      </>
+                    ) : (
+                      <span>Load More</span>
+                    )}
                  </button>
               </div>
             </div>
