@@ -20,3 +20,7 @@
 ## 2026-02-02 - Visual Notification Accessibility on Icons
 **Learning:** Icon-only interactive elements like a cart button often use visual notification dots. These dots need `aria-hidden="true"` to prevent redundant reading, while the element's `aria-label` needs to explicitly convey the state (e.g. "Cart with items" vs "Cart"). Furthermore, all icon-only buttons need `title` attributes matching the `aria-label` for native hover tooltips.
 **Action:** Pair `aria-label` with `title` on icon-only interactive elements, and ensure visual notification states hide decorative elements from screen readers while updating the explicit label.
+
+## 2026-06-18 - Focus Rings on Stretched Links
+**Learning:** When using pseudo-elements (like `after:absolute after:inset-0`) to create full-card stretched links, applying `focus:outline-none` to the parent link removes its default focus indicator.
+**Action:** To maintain keyboard accessibility, apply focus-visible utilities directly to the pseudo-element itself (e.g., `focus-visible:after:ring-2`) to accurately outline the entire card when focused.
