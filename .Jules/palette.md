@@ -20,3 +20,7 @@
 ## 2026-02-02 - Visual Notification Accessibility on Icons
 **Learning:** Icon-only interactive elements like a cart button often use visual notification dots. These dots need `aria-hidden="true"` to prevent redundant reading, while the element's `aria-label` needs to explicitly convey the state (e.g. "Cart with items" vs "Cart"). Furthermore, all icon-only buttons need `title` attributes matching the `aria-label` for native hover tooltips.
 **Action:** Pair `aria-label` with `title` on icon-only interactive elements, and ensure visual notification states hide decorative elements from screen readers while updating the explicit label.
+
+## 2026-06-25 - Sequential Timeouts and Accessibility
+**Learning:** When managing sequential timeouts in React `useEffect` (e.g., simulating a loading delay followed by a temporary success message delay), combining the logic or dependencies into a single hook often causes premature cleanup if the first timeout updates a state variable that is also in the dependency array. Furthermore, an `aria-live` visually hidden region is much more robust for communicating these sequential states to screen readers than rapidly changing button labels.
+**Action:** Use separate `useEffect` hooks for each state dependency when managing complex or sequential timeouts, and always pair visual loading/success indicators with an `aria-live="polite"` region to accurately announce the start and completion of asynchronous operations.
