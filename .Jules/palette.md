@@ -20,3 +20,7 @@
 ## 2026-02-02 - Visual Notification Accessibility on Icons
 **Learning:** Icon-only interactive elements like a cart button often use visual notification dots. These dots need `aria-hidden="true"` to prevent redundant reading, while the element's `aria-label` needs to explicitly convey the state (e.g. "Cart with items" vs "Cart"). Furthermore, all icon-only buttons need `title` attributes matching the `aria-label` for native hover tooltips.
 **Action:** Pair `aria-label` with `title` on icon-only interactive elements, and ensure visual notification states hide decorative elements from screen readers while updating the explicit label.
+
+## 2026-06-15 - Managing Sequential Timeouts for Transient UI States
+**Learning:** Sequential multi-stage transient UI states (like loading, then success, then reverting) controlled by `setTimeout` within `useEffect` hooks require careful management to prevent premature cleanup and ESLint `react-hooks/set-state-in-effect` errors. Setting state values directly in the effect body can cause infinite loops or cascading renders.
+**Action:** Always set side-effect states (like text for an `aria-live` announcement region) simultaneously with the state that triggers the transition inside the `setTimeout` callback, or in the initial event handler, rather than at the top level of the `useEffect`. Also, use separate `useEffect` hooks for each timeout stage to ensure proper lifecycle management.
