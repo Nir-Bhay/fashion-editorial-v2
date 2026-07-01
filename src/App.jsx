@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
@@ -5,8 +6,47 @@ import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
 
 function App() {
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [loadMoreSuccess, setLoadMoreSuccess] = useState(false);
+  const [ariaLiveMessage, setAriaLiveMessage] = useState('');
+
+  // Handle loading state timeout
+  useEffect(() => {
+    let timer;
+    if (isLoadingMore) {
+      timer = setTimeout(() => {
+        setIsLoadingMore(false);
+        setLoadMoreSuccess(true);
+        setAriaLiveMessage('Successfully loaded more items');
+      }, 1500); // Simulate network request
+    }
+    return () => clearTimeout(timer);
+  }, [isLoadingMore]);
+
+  // Handle success state timeout
+  useEffect(() => {
+    let timer;
+    if (loadMoreSuccess) {
+      timer = setTimeout(() => {
+        setLoadMoreSuccess(false);
+        setAriaLiveMessage('');
+      }, 2000);
+    }
+    return () => clearTimeout(timer);
+  }, [loadMoreSuccess]);
+
+  const handleLoadMore = () => {
+    if (!isLoadingMore && !loadMoreSuccess) {
+      setIsLoadingMore(true);
+      setAriaLiveMessage('Loading more items...');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
+      <div aria-live="polite" className="sr-only">
+        {ariaLiveMessage}
+      </div>
       <a
         href="#main-content"
         className="sr-only focus:not-sr-only focus:absolute focus:z-[60] focus:top-4 focus:left-4 focus:bg-charcoal focus:text-white focus:px-6 focus:py-3 focus:font-medium focus:rounded-sm focus:shadow-xl focus:outline-none focus:ring-2 focus:ring-sunset-orange"
@@ -39,8 +79,29 @@ function App() {
               <ProductGrid />
               
               <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+                 <button
+                   onClick={handleLoadMore}
+                   disabled={isLoadingMore}
+                   className={`px-12 py-4 border border-charcoal text-sm uppercase tracking-widest transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm flex items-center justify-center min-w-[200px] ${
+                     loadMoreSuccess
+                       ? 'bg-charcoal text-white'
+                       : 'hover:bg-charcoal hover:text-white disabled:opacity-70 disabled:cursor-not-allowed'
+                   }`}
+                   aria-disabled={isLoadingMore}
+                 >
+                    {isLoadingMore ? (
+                      <>
+                        <svg className="animate-spin -ml-1 mr-3 h-4 w-4 text-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                          <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                          <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Loading...
+                      </>
+                    ) : loadMoreSuccess ? (
+                      'Loaded'
+                    ) : (
+                      'Load More'
+                    )}
                  </button>
               </div>
             </div>
