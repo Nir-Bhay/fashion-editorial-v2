@@ -20,3 +20,7 @@
 ## 2026-02-02 - Visual Notification Accessibility on Icons
 **Learning:** Icon-only interactive elements like a cart button often use visual notification dots. These dots need `aria-hidden="true"` to prevent redundant reading, while the element's `aria-label` needs to explicitly convey the state (e.g. "Cart with items" vs "Cart"). Furthermore, all icon-only buttons need `title` attributes matching the `aria-label` for native hover tooltips.
 **Action:** Pair `aria-label` with `title` on icon-only interactive elements, and ensure visual notification states hide decorative elements from screen readers while updating the explicit label.
+
+## 2026-01-15 - Managing asynchronous accessibility announcements
+**Learning:** Setting accessibility string updates synchronously at the top level of a \`useEffect\` triggers a ESLint \`react-hooks/set-state-in-effect\` error that cascades renders. Multi-stage feedback (like "Loading..." -> "Success") is better split into specific useEffect handlers responding to state changes.
+**Action:** Pair \`aria-live="polite"\` announcements tightly with the \`setTimeout\` or event handler callbacks that drive visual transitions to ensure synchronous accessibility context while adhering to React hook standards.

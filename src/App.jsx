@@ -1,10 +1,42 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
 import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
+import { Loader2 } from 'lucide-react';
 
 function App() {
+  const [loadState, setLoadState] = useState('idle'); // 'idle', 'loading', 'success'
+  const [announcement, setAnnouncement] = useState('');
+
+  // Handle loading state -> success state
+  useEffect(() => {
+    if (loadState === 'loading') {
+      const timer = setTimeout(() => {
+        setLoadState('success');
+        setAnnouncement('Successfully loaded more products');
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [loadState]);
+
+  // Handle success state -> idle state
+  useEffect(() => {
+    if (loadState === 'success') {
+      const timer = setTimeout(() => {
+        setLoadState('idle');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [loadState]);
+
+  const handleLoadMore = () => {
+    if (loadState !== 'idle') return;
+    setLoadState('loading');
+    setAnnouncement('Loading more products...');
+  };
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
       <a
@@ -38,9 +70,25 @@ function App() {
               </div>
               <ProductGrid />
               
-              <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+              <div className="mt-24 flex justify-center flex-col items-center">
+                 <div aria-live="polite" className="sr-only">
+                    {announcement}
+                 </div>
+                 <button
+                    onClick={handleLoadMore}
+                    disabled={loadState !== 'idle'}
+                    className={`flex items-center space-x-2 px-12 py-4 border border-charcoal text-sm uppercase tracking-widest transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm ${
+                      loadState === 'idle' ? 'hover:bg-charcoal hover:text-white' :
+                      loadState === 'loading' ? 'bg-charcoal/10 text-charcoal/50 cursor-wait' :
+                      'bg-charcoal text-white' // success state
+                    }`}
+                 >
+                    {loadState === 'loading' && <Loader2 size={16} className="animate-spin" aria-hidden="true" />}
+                    <span>
+                      {loadState === 'idle' ? 'Load More' :
+                       loadState === 'loading' ? 'Loading...' :
+                       'Loaded'}
+                    </span>
                  </button>
               </div>
             </div>
