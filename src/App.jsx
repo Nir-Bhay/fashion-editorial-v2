@@ -1,10 +1,42 @@
+import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
 import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
+import { Loader2 } from 'lucide-react';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [loadingMessage, setLoadingMessage] = useState('');
+
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+        setIsSuccess(true);
+        setLoadingMessage('Successfully loaded 9 more items');
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        setIsSuccess(false);
+        setLoadingMessage('');
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
+
+  const handleLoadMore = () => {
+    setIsLoading(true);
+    setLoadingMessage('Loading more items...');
+  };
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
       <a
@@ -38,10 +70,31 @@ function App() {
               </div>
               <ProductGrid />
               
-              <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+              <div className="mt-24 flex justify-center flex-col items-center gap-4">
+                 <div aria-live="polite" className="sr-only">
+                    {loadingMessage}
+                 </div>
+                 <button
+                    onClick={handleLoadMore}
+                    disabled={isLoading}
+                    className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center min-w-[200px]"
+                 >
+                    {isLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 mr-2 animate-spin" aria-hidden="true" />
+                        Loading
+                      </>
+                    ) : isSuccess ? (
+                      'Loaded'
+                    ) : (
+                      'Load More'
+                    )}
                  </button>
+                 {isSuccess && (
+                   <p className="text-sm text-green-700 animate-fade-in" aria-hidden="true">
+                     Successfully loaded new items!
+                   </p>
+                 )}
               </div>
             </div>
           </div>
