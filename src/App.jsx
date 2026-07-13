@@ -3,8 +3,41 @@ import Hero from './components/Hero';
 import BrandStatement from './components/BrandStatement';
 import Sidebar from './components/Sidebar';
 import ProductGrid from './components/ProductGrid';
+import { useState, useEffect } from 'react';
+import { Loader2 } from 'lucide-react';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [liveMessage, setLiveMessage] = useState("");
+
+  useEffect(() => {
+    if (isLoading) {
+      const timer = setTimeout(() => {
+        setIsLoading(false);
+        setIsSuccess(true);
+        setLiveMessage("Successfully loaded more products");
+      }, 1500);
+      return () => clearTimeout(timer);
+    }
+  }, [isLoading]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      const timer = setTimeout(() => {
+        setIsSuccess(false);
+        setLiveMessage("");
+      }, 2000);
+      return () => clearTimeout(timer);
+    }
+  }, [isSuccess]);
+
+  const handleLoadMore = () => {
+    if (isLoading || isSuccess) return;
+    setIsLoading(true);
+    setLiveMessage("Loading more products...");
+  };
+
   return (
     <div className="min-h-screen bg-warm-white text-charcoal font-sans selection:bg-sunset-orange/30">
       <a
@@ -38,9 +71,24 @@ function App() {
               </div>
               <ProductGrid />
               
-              <div className="mt-24 flex justify-center">
-                 <button className="px-12 py-4 border border-charcoal text-sm uppercase tracking-widest hover:bg-charcoal hover:text-white transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm">
-                    Load More
+              <div className="mt-24 flex justify-center flex-col items-center">
+                 <div aria-live="polite" className="sr-only">
+                    {liveMessage}
+                 </div>
+                 <button
+                    onClick={handleLoadMore}
+                    disabled={isLoading}
+                    className={`px-12 py-4 border border-charcoal text-sm uppercase tracking-widest transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-charcoal focus-visible:ring-offset-2 rounded-sm flex items-center justify-center min-w-[200px] ${
+                      isLoading || isSuccess ? 'bg-charcoal text-white cursor-default' : 'hover:bg-charcoal hover:text-white'
+                    }`}
+                 >
+                    {isLoading ? (
+                      <Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />
+                    ) : isSuccess ? (
+                      "Loaded!"
+                    ) : (
+                      "Load More"
+                    )}
                  </button>
               </div>
             </div>
